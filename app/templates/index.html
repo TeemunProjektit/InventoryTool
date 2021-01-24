@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="navbar">
+    <div class="navcontent">
+        <h1>Inventory tool</h1>
+        <!--
+        <div class="dropdown">
+            <a class="dropdownlink" href="inventory">Inventory</a>
+        <div class="dropdown-content">
+            <a href="#">All</a>
+            <a href="#">Helsinki</a>
+            <a href="#">Tampere</a>
+            <a href="#">Helsinki</a>
+            <a href="#">Helsinki</a>
+            <a href="#">Helsinki</a>
+        </div>
+            </div>
+            --->
+        <a href="inventory">Inventory</a>
+        <a href="add">Add item</a>
+        <a href="logout">Log out</a>
+    </div>
+</div>
+<div class="content">
+    <h1>Please sign in</h1>
+
+<form method="POST" action="/">
+<table id="customTable">
+
+    <tr>
+        <td>
+            Username
+        </td>
+        <td>
+        <input type="text" name="username">
+        </td>
+        </tr>
+    <tr><td>Password
+        </td>
+        <td>
+<input type="password" name="password">
+    </td>
+    </tr>
+    <tr>
+        <td colspan="2", align="center"><input type="submit" value="Submit"></td>
+    </tr>
+</table>
+</form>
+    {% for message in get_flashed_messages() %}
+    <div class="error">{{ message }}</div>
+    {% endfor %}
+</div>
+</body>
+</html>

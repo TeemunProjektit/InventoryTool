@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script type="text/javascript" src="/static/scripts.js"></script>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="navcontent">
+        <h1>Inventory tool</h1>
+        <a href="inventory">Inventory</a>
+        <a href="add">Add item</a>
+        <a href="logout">Log out</a>
+    </div>
+</div>
+
+<div class="items">
+
+<form method="POST" class="itemsContent">Select office:
+
+    <select id="offices" onchange="this.form.submit();">
+        <option value="All" name="All">All</option>
+        <option value="Helsinki" name="Helsinki">Helsinki</option>
+        <option value="Tampere" name="Tampere">Tampere</option>
+        <option value="Rauma" name="Rauma">Rauma</option>
+        <option value="Levi" name="Levi">Levi</option>
+    </select>
+
+<table id="inventoryTable">
+    <th onclick="sortTable(0)">Office</th>
+    <th onclick="sortTable(1)">Product</th>
+    <th onclick="sortTable(2)">Name</th>
+    <th onclick="sortTable(3)">SN</th>
+    <th onclick="sortTable(4)">Manufacturer</th>
+    <th onclick="sortTable(5)">Count</th>
+    <th>Modify</th>
+  {% for item in data %}
+  <tr>
+      <td> {{item[0]}} </td>
+      <td> {{item[1]}} </td>
+      <td> {{item[2]}} </td>
+      <td> {{item[3]}} </td>
+      <td> {{item[4]}} </td>
+      <td> {{item[5]}} </td>
+      <td>
+              <input type="submit" name="Edit" value="Edit"> <!--onclick="EditItem(this)"-->
+              <input type="submit" name="Assign" value="Assign"><!--onclick="AssignItem(this)"-->
+      </td>
+  </tr>
+  {% endfor %}
+
+</table>
+
+    </form>
+</div>
+
+
+
+</body>
+</html>

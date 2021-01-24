@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add item</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script type="text/javascript" src="/static/scripts.js"></script>
+
+</head>
+<body>
+
+<div class="navbar">
+    <div class="navcontent">
+        <h1>Inventory tool</h1>
+        <a href="inventory">Inventory</a>
+        <a href="add">Add item</a>
+        <a href="logout">Log out</a>
+    </div>
+</div>
+
+<div class="content">
+    <h1>Add a new item to inventory</h1>
+
+    <form method="POST" action="">
+        <table id="customTable">
+            <tr>
+                <td>
+                    <label for="office">Office</label>
+                </td>
+                <td>
+                    <select id="office" name="office">
+                        <option value="Office1">Helsinki</option>
+                        <option value="Office2">Tampere</option>
+                        <option value="Office3">Rauma</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Product</td>
+                <td>
+                    <select id="product" name="product">
+                        <option value="Dock">Dock</option>
+                        <option value="Monitor">Monitor</option>
+                        <option value="Keyboard">Keyboard</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Manufacturer</td>
+                <td>
+                    <select id="manufacturer" name="manufacturer">
+                        <option value="HP">HP</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="Microsoft">Microsoft</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name"/></td>
+            </tr>
+            <tr>
+                <td>SN</td>
+                <td><input type="text" name="SN"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Count</td>
+                <td><input type="text" name="count"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><a href=inventory><input type="submit" value="Save"></a>
+                    <a href=inventory><input type="button" value="Cancel"></a></td>
+                </td></tr>
+
+        </table>
+    </form>
+    {% for message in get_flashed_messages() %}
+    <div class="error">{{ message }}</div>
+    {% endfor %}
+</div>
+</body>
+</html>

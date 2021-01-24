@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assign</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script type="text/javascript" src="/static/scripts.js"></script>
+
+</head>
+<body>
+
+<div class="navbar">
+    <div class="navcontent">
+        <h1>Inventory tool</h1>
+        <a href="inventory">Inventory</a>
+        <a href="add">Add item</a>
+        <a href="logout">Log out</a>
+    </div>
+</div>
+<div class="items">
+
+    <table>
+        <h1>Assign item to user</h1>
+
+        <table id="customTable">
+            <th onclick="sortTable(0)">Office</th>
+            <th onclick="sortTable(1)">Product</th>
+            <th onclick="sortTable(2)">Name</th>
+            <th onclick="sortTable(3)">SN</th>
+            <th onclick="sortTable(4)">Manufacturer</th>
+            <th onclick="sortTable(5)">Count</th>
+            <th onclick="sortTable(6)">Assign to</th>
+            <th onclick="sortTable(6)">Comment</th>
+            <th>Edit</th>
+            {% for item in assigndata %}
+            <tr>
+                <td> {{item[0]}}</td>
+                <td> {{item[1]}}</td>
+                <td> {{item[2]}}</td>
+                <td> {{item[3]}}</td>
+                <td> {{item[4]}}</td>
+                <td> {{item[5]}}</td>
+                <form>
+                    <td><input type="text" name="assignedto"/></td>
+                    <td><input type="text" name="comment"/></td>
+
+                    <td><input type="submit" value="Save"> <!--onclick="EditItem(this)"-->
+                        <a href="/inventory"><input type="button" value="Cancel"></a><!--onclick="AssignItem(this)"-->
+                    </td>
+                </form>
+            </tr>
+            {% endfor %}
+        </table>
+</body>
+</html>
