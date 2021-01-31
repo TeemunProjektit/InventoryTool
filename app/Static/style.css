@@ -28,9 +28,39 @@
     display: inline-block;
 }
 
-.offices{
+#selectOffice{
     position: relative;
+    display: inline;
+
 }
+#selectOffice input[type=submit] {
+        background-color: #e1e1e1;
+        border-color: gray;
+        border-style: solid;
+        border-width: thin;
+        margin-bottom: 10px;
+        }
+
+#selectOffice input[type=submit]:hover {
+        background-color: orange;
+        border-color: gray;
+        border-style: solid;
+        border-width: thin;
+      }
+
+input[type=submit,button] {
+        background-color: #e1e1e1;
+        border-color: gray;
+        border-style: solid;
+        border-width: thin;
+        }
+
+input[type=submit,button]:hover {
+        background-color: orange;
+        border-color: gray;
+        border-style: solid;
+        border-width: thin;
+      }
 
 .dropdown a{
     display: inline-block;

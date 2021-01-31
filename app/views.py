@@ -48,10 +48,33 @@ def inventory():
             return redirect('/edit')
         elif request.form.get('Assign') == 'Assign':
             return redirect('/assign')
-        elif request.form.get('Offices') == 'Helsinki':
+        elif request.form.get('All') == 'All':
+            cursor = connection.cursor()
+            data = cursor.execute("SELECT office, product, name, SN, manufacturer, count FROM Inventory")
+            data = cursor.fetchall()
+            cursor.commit()
+            cursor.close()
+            return render_template('inventory.html', data=data)
+        elif request.form.get('Office 1') == 'Office 1':
             cursor = connection.cursor()
             data = cursor.execute("SELECT office, product, name, SN, manufacturer, count FROM Inventory WHERE "
-                                  "office = 'Helsinki';")
+                                  "office = 'Office 1';")
+            data = cursor.fetchall()
+            cursor.commit()
+            cursor.close()
+            return render_template('inventory.html', data=data)
+        elif request.form.get('Office 2') == 'Office 2':
+            cursor = connection.cursor()
+            data = cursor.execute("SELECT office, product, name, SN, manufacturer, count FROM Inventory WHERE "
+                                  "office = 'Office 2';")
+            data = cursor.fetchall()
+            cursor.commit()
+            cursor.close()
+            return render_template('inventory.html', data=data)
+        elif request.form.get('Office 3') == 'Office 3':
+            cursor = connection.cursor()
+            data = cursor.execute("SELECT office, product, name, SN, manufacturer, count FROM Inventory WHERE "
+                                  "office = 'Office 3';")
             data = cursor.fetchall()
             cursor.commit()
             cursor.close()

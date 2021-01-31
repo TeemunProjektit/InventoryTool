@@ -20,14 +20,18 @@
 <div class="items">
 
 <form method="POST" class="itemsContent">Select office:
-
-    <select id="offices" onchange="this.form.submit();">
-        <option value="All" name="All">All</option>
-        <option value="Helsinki" name="Helsinki">Helsinki</option>
-        <option value="Tampere" name="Tampere">Tampere</option>
-        <option value="Rauma" name="Rauma">Rauma</option>
-        <option value="Levi" name="Levi">Levi</option>
-    </select>
+<div id="selectOffice">
+    <input type="submit" name="All" value="All">
+    <input type="submit" name="Office 1" value="Office 1">
+    <input type="submit" name="Office 2" value="Office 2">
+    <input type="submit" name="Office 3" value="Office 3">
+</div>
+<!--    <select id="offices" onchange="this.form.submit();">-->
+<!--        <option value="All" name="All">All</option>-->
+<!--        <option value="Office 1" name="Office 1">Office 1</option>-->
+<!--        <option value="Office 2" name="Office 2">Office 2</option>-->
+<!--        <option value="Office 3" name="Office 3">Office 3</option>-->
+<!--    </select>-->
 
 <table id="inventoryTable">
     <th onclick="sortTable(0)">Office</th>
