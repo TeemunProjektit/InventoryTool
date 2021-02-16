@@ -94,7 +94,7 @@ def edit():
         cursor.close()
 
         cursor = connection.cursor()
-        itemhistory = cursor.execute("SELECT action, office, product, name, SN, manufacturer, count, user, "
+        itemhistory = cursor.execute("SELECT action, office, product, name, SN, manufacturer, count, modified, "
                                      "assignedto, comment, changedate FROM inventory_history WHERE SN=123 ")
         itemhistory = cursor.fetchall()
         cursor.commit()
@@ -111,9 +111,10 @@ def edit():
         sn = newdetails['SN']
         manufacturer = newdetails['manufacturer']
         count = newdetails['count']
+        modified = session.get('user')
 
         cursor.execute("UPDATE inventory SET office=?, product=?, name=?, sn=?, manufacturer=?,"
-                       " count=? WHERE id=1", (office, product, name, sn, manufacturer, count))
+                       " count=?, modified=? WHERE id=1", (office, product, name, sn, manufacturer, count, modified))
         cursor.commit()
         cursor.close()
         return redirect('/inventory')
@@ -134,11 +135,11 @@ def assign():
         return render_template('assign.html', assigndata=assigndata)
 
     if request.method == 'POST':
+        cursor = connection.cursor()
         assigneddetails = request.form
         assignedto = assigneddetails['assignedto']
         comment = assigneddetails['comment']
-        cursor = connection.cursor()
-        cursor.execute(("UPDATE inventory SET assignedto=?, comment=? WHERE id=1"), (assignedto, comment))
+        cursor.execute("UPDATE inventory SET assignedto=?, comment=? WHERE id=1", (assignedto, comment))
         cursor.commit()
         cursor.close()
         return redirect('/inventory')
@@ -174,13 +175,15 @@ def add():
             errors = True
             print(type(count))
 
+        modified = session.get('user')
+
         if errors:
             return render_template('add.html')
 
         else:
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO inventory(office, product, name, SN, manufacturer, count)"
-                           " VALUES(?, ?, ?, ?, ?, ?)", (office, product, name, sn, manufacturer, count))
+            cursor.execute("INSERT INTO inventory(office, product, name, SN, manufacturer, count, modified)"
+                           " VALUES(?, ?, ?, ?, ?, ?, ?)", (office, product, name, sn, manufacturer, count, modified))
             cursor.commit()
             cursor.close()
 
@@ -191,7 +194,7 @@ def add():
 def history():
     if request.method == 'GET':
         cursor = connection.cursor()
-        history_data = cursor.execute("SELECT action, office, product, name, SN, manufacturer, count, username, "
+        history_data = cursor.execute("SELECT action, office, product, name, SN, manufacturer, count, modified, "
                                       "assignedto, comment, changedate count FROM inventory_history")
         history_data = cursor.fetchall()
         cursor.commit()
